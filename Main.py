@@ -1,13 +1,14 @@
 import torch
 from helpers import load_model
 from ControlNN import ControlNN
-
+from matplotlib import pyplot as plt
 
 class Main:
     def __init__(self):
         pass
 
     def predict_x_values(self):
+        window, graph = plt.subplots()
         y_target_test = int(input("Input target value: "))
         n_steps = int(input("Input number of values to generate: "))
 
@@ -32,6 +33,10 @@ class Main:
         for i in x_values:
             print(f"X value for y={y_target_test}: {i}")
 
+        graph.plot(x_values)
+        graph.set_xlabel("step")
+        graph.set_ylabel("Predicted X value")
+        plt.show()
 
 if __name__ == "__main__":
     Main().predict_x_values()
